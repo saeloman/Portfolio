@@ -1,118 +1,905 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Academic portfolio of Mohamed-Saiaf Aliamini, PhD candidate in Computer Science working on Artificial Intelligence for Health and schistosomiasis.">
-  <title>Mohamed-Saiaf Aliamini | AI for Health Researcher</title>
+  <meta name="description" content="Mohamed-Saiaf Aliamini - PhD Researcher in Artificial Intelligence for Health, One Health and Schistosomiasis.">
+  <meta name="author" content="Mohamed-Saiaf Aliamini">
+  <title>Mohamed-Saiaf Aliamini | AI Researcher</title>
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+  <style>
+    :root {
+      --primary: #176b87;
+      --secondary: #2496a8;
+      --dark: #172b3a;
+      --text: #475569;
+      --light: #f5f8fa;
+      --border: #e4eaf0;
+      --white: #ffffff;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      color: var(--text);
+      background: var(--white);
+      line-height: 1.7;
+    }
+
+    a {
+      text-decoration: none;
+      color: var(--primary);
+    }
+
+    .container {
+      max-width: 1080px;
+      width: 90%;
+      margin: auto;
+    }
+
+    header {
+      background: rgba(255,255,255,.96);
+      border-bottom: 1px solid var(--border);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      backdrop-filter: blur(12px);
+    }
+
+    nav {
+      min-height: 68px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      color: var(--dark);
+      font-weight: 800;
+      font-size: 19px;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 22px;
+      list-style: none;
+      font-size: 13px;
+      font-weight: 600;
+    }
+
+    .nav-links a {
+      color: var(--text);
+      transition: .2s;
+    }
+
+    .nav-links a:hover {
+      color: var(--secondary);
+    }
+
+    .menu-toggle {
+      display: none;
+      border: 0;
+      background: none;
+      font-size: 23px;
+      color: var(--dark);
+      cursor: pointer;
+    }
+
+    section {
+      padding: 75px 0;
+      scroll-margin-top: 65px;
+    }
+
+    .hero {
+      background: linear-gradient(135deg, #f3f8fa, #ffffff);
+      padding: 85px 0 75px;
+    }
+
+    .hero-content {
+      display: grid;
+      grid-template-columns: 220px 1fr;
+      gap: 45px;
+      align-items: center;
+    }
+
+    .profile-photo {
+      width: 205px;
+      height: 205px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 5px solid white;
+      box-shadow: 0 8px 30px rgba(0,0,0,.10);
+      background: #e8eef2;
+    }
+
+    .hero h1 {
+      color: var(--dark);
+      font-size: clamp(29px, 4vw, 43px);
+      line-height: 1.2;
+      margin-bottom: 12px;
+    }
+
+    .hero h2 {
+      font-size: 19px;
+      color: var(--primary);
+      font-weight: 600;
+      margin-bottom: 15px;
+    }
+
+    .affiliation {
+      font-size: 14px;
+      margin-bottom: 5px;
+    }
+
+    .location {
+      font-size: 14px;
+      color: #718096;
+      margin-bottom: 18px;
+    }
+
+    .hero-description {
+      max-width: 760px;
+      margin-top: 17px;
+    }
+
+    .social-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 18px;
+      margin-top: 22px;
+    }
+
+    .social-links a {
+      color: var(--primary);
+      font-size: 14px;
+      font-weight: 600;
+    }
+
+    .social-links a:hover {
+      color: var(--secondary);
+    }
+
+    .cv-button {
+      display: inline-block;
+      padding: 9px 19px;
+      background: var(--primary);
+      color: white;
+      border-radius: 6px;
+      font-size: 13px;
+      font-weight: 600;
+      margin-top: 12px;
+    }
+
+    .cv-button:hover {
+      background: var(--dark);
+      color: white;
+    }
+
+    .section-title {
+      color: var(--dark);
+      font-size: 27px;
+      margin-bottom: 30px;
+      font-weight: 800;
+    }
+
+    .section-title::after {
+      content: "";
+      display: block;
+      width: 48px;
+      height: 3px;
+      background: var(--secondary);
+      margin-top: 10px;
+    }
+
+    .about-text {
+      font-size: 15px;
+      max-width: 900px;
+    }
+
+    .research-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 22px;
+    }
+
+    .tag {
+      background: #eaf4f7;
+      color: var(--primary);
+      padding: 7px 13px;
+      border-radius: 20px;
+      font-size: 12px;
+      font-weight: 600;
+    }
+
+    .gray-section {
+      background: var(--light);
+    }
+
+    .timeline {
+      border-left: 2px solid #d9e6eb;
+      margin-left: 8px;
+      padding-left: 28px;
+    }
+
+    .timeline-item {
+      position: relative;
+      margin-bottom: 32px;
+    }
+
+    .timeline-item::before {
+      content: "";
+      position: absolute;
+      left: -36px;
+      top: 8px;
+      width: 12px;
+      height: 12px;
+      background: var(--secondary);
+      border: 3px solid white;
+      border-radius: 50%;
+    }
+
+    .date {
+      color: var(--secondary);
+      font-size: 12px;
+      font-weight: 700;
+      margin-bottom: 5px;
+    }
+
+    .item-title {
+      color: var(--dark);
+      font-size: 17px;
+      font-weight: 700;
+    }
+
+    .institution {
+      font-size: 13px;
+      color: #64748b;
+      font-weight: 600;
+      margin: 3px 0 8px;
+    }
+
+    .item-description {
+      font-size: 14px;
+    }
+
+    .research-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 20px;
+    }
+
+    .research-card {
+      background: white;
+      padding: 24px;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      transition: .25s;
+    }
+
+    .research-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 8px 25px rgba(0,0,0,.06);
+    }
+
+    .research-card i {
+      font-size: 25px;
+      color: var(--secondary);
+      margin-bottom: 13px;
+    }
+
+    .research-card h3 {
+      color: var(--dark);
+      font-size: 16px;
+      margin-bottom: 9px;
+    }
+
+    .research-card p {
+      font-size: 13px;
+    }
+
+    .publication {
+      padding: 20px;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      margin-bottom: 16px;
+    }
+
+    .publication h3 {
+      color: var(--dark);
+      font-size: 15px;
+      margin-bottom: 7px;
+    }
+
+    .publication p {
+      font-size: 13px;
+    }
+
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 25px;
+    }
+
+    .skill-box {
+      padding: 20px;
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+    }
+
+    .skill-box h3 {
+      font-size: 15px;
+      color: var(--dark);
+      margin-bottom: 10px;
+    }
+
+    .skill-box p {
+      font-size: 13px;
+    }
+
+    .contact-box {
+      background: #f3f8fa;
+      padding: 35px;
+      border-radius: 10px;
+      text-align: center;
+    }
+
+    .contact-box h3 {
+      color: var(--dark);
+      font-size: 21px;
+      margin-bottom: 12px;
+    }
+
+    footer {
+      background: var(--dark);
+      color: #cbd5e1;
+      padding: 22px 0;
+      text-align: center;
+      font-size: 12px;
+    }
+
+    @media(max-width: 760px) {
+      .menu-toggle {
+        display: block;
+      }
+
+      .nav-links {
+        display: none;
+        position: absolute;
+        top: 68px;
+        left: 0;
+        width: 100%;
+        background: white;
+        padding: 20px;
+        flex-direction: column;
+        gap: 15px;
+        border-bottom: 1px solid var(--border);
+      }
+
+      .nav-links.active {
+        display: flex;
+      }
+
+      .hero-content {
+        grid-template-columns: 1fr;
+        text-align: center;
+        gap: 25px;
+      }
+
+      .profile-photo {
+        margin: auto;
+      }
+
+      .social-links,
+      .research-tags {
+        justify-content: center;
+      }
+
+      .research-grid,
+      .skills-grid {
+        grid-template-columns: 1fr;
+      }
+
+      section {
+        padding: 55px 0;
+      }
+    }
+  </style>
 </head>
+
 <body>
-  <header class="site-header">
-    <a class="brand" href="#home">MSA<span>.</span></a>
-    <button class="menu-toggle" aria-label="Open navigation" aria-expanded="false">☰</button>
-    <nav class="nav">
-      <a href="#about">About</a><a href="#research">Research</a><a href="#publications">Publications</a>
-      <a href="#experience">Experience</a><a href="#education">Education</a><a href="#contact" class="nav-contact">Contact</a>
+
+<header>
+  <div class="container">
+    <nav>
+      <a href="#home" class="logo">M.S. ALIAMINI</a>
+
+      <button class="menu-toggle" id="menuToggle" aria-label="Open navigation">
+        <i class="fas fa-bars"></i>
+      </button>
+
+      <ul class="nav-links" id="navLinks">
+        <li><a href="#about">About</a></li>
+        <li><a href="#research">Research</a></li>
+        <li><a href="#publications">Publications</a></li>
+        <li><a href="#experience">Experience</a></li>
+        <li><a href="#education">Education</a></li>
+        <li><a href="#awards">Awards</a></li>
+        <li><a href="#skills">Skills</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
     </nav>
-  </header>
+  </div>
+</header>
 
-  <main>
-    <section class="hero section" id="home">
-      <div class="hero-copy">
-        <p class="eyebrow"><span class="dot"></span> PhD Candidate · Computer Science · Senegal</p>
-        <h1>Mohamed-Saiaf<br><span>ALIAMINI</span></h1>
-        <h2>Artificial Intelligence for Health Researcher</h2>
-        <p class="lead">I work at the intersection of Artificial Intelligence, epidemiology and One Health, developing data-driven approaches to better understand and monitor neglected tropical diseases, particularly schistosomiasis.</p>
-        <div class="hero-actions">
-          <a class="button primary" href="#research">Explore my research <span>↗</span></a>
-          <a class="button secondary" href="#contact">Get in touch</a>
+<!-- HERO -->
+<section class="hero" id="home">
+  <div class="container hero-content">
+
+    <!-- Replace profile.jpg with your photograph -->
+    <img src="profile.jpg" alt="Mohamed-Saiaf Aliamini"
+         class="profile-photo">
+
+    <div>
+      <h1>Mohamed-Saiaf ALIAMINI</h1>
+
+      <h2>PhD Student in Computer Science | Artificial Intelligence for Health</h2>
+
+      <div class="affiliation">
+        <strong>UCAD</strong> · <strong>IRD</strong> · <strong>UMMISCO</strong>
+      </div>
+
+      <div class="location">
+        <i class="fas fa-location-dot"></i> Dakar, Senegal
+      </div>
+
+      <p class="hero-description">
+        I am a PhD student in Computer Science at Cheikh Anta Diop
+        University (UCAD), Senegal, and a researcher working at the
+        intersection of Artificial Intelligence, epidemiology and
+        public health. My research focuses on applying AI and
+        mathematical modeling to neglected tropical diseases,
+        particularly schistosomiasis, through a One Health approach.
+      </p>
+
+      <a href="CV.pdf" class="cv-button">
+        <i class="fas fa-file-pdf"></i> Download CV
+      </a>
+
+      <div class="social-links">
+        <a href="https://orcid.org/0009-0000-7980-1414" target="_blank">
+          <i class="fab fa-orcid"></i> ORCID
+        </a>
+        <a href="https://github.com/YOUR_USERNAME" target="_blank">
+          <i class="fab fa-github"></i> GitHub
+        </a>
+        <a href="https://www.linkedin.com/in/YOUR_USERNAME/" target="_blank">
+          <i class="fab fa-linkedin"></i> LinkedIn
+        </a>
+        <a href="https://scholar.google.com/" target="_blank">
+          <i class="fas fa-graduation-cap"></i> Google Scholar
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="container">
+    <h2 class="section-title">About Me</h2>
+
+    <div class="about-text">
+      <p>
+        Hello! I am Mohamed-Saiaf Aliamini, a PhD student in Computer
+        Science at Cheikh Anta Diop University (UCAD), Senegal.
+        My research explores the intersection of Artificial
+        Intelligence and Neglected Tropical Diseases (NTDs),
+        with a particular focus on schistosomiasis.
+      </p>
+
+      <br>
+
+      <p>
+        My doctoral research investigates AI-based approaches for
+        predicting schistosomiasis prevalence by integrating
+        environmental, socio-epidemiological and microscopy data
+        within a One Health framework. I am also interested in
+        computer vision for microscopic image analysis and in
+        ecological modeling to identify areas suitable for
+        intermediate-host snails.
+      </p>
+
+      <br>
+
+      <p>
+        Beyond research, I am passionate about scientific
+        collaboration, capacity building and the development of
+        AI solutions addressing public health challenges in Africa.
+      </p>
+    </div>
+
+    <div class="research-tags">
+      <span class="tag">Artificial Intelligence</span>
+      <span class="tag">AI for Health</span>
+      <span class="tag">One Health</span>
+      <span class="tag">Schistosomiasis</span>
+      <span class="tag">Epidemiological Modeling</span>
+      <span class="tag">Computer Vision</span>
+      <span class="tag">Machine Learning</span>
+      <span class="tag">Deep Learning</span>
+      <span class="tag">Environmental Modeling</span>
+    </div>
+  </div>
+</section>
+
+<!-- RESEARCH -->
+<section class="gray-section" id="research">
+  <div class="container">
+    <h2 class="section-title">Research Interests</h2>
+
+    <div class="research-grid">
+
+      <div class="research-card">
+        <i class="fas fa-heart-pulse"></i>
+        <h3>AI for Global Health</h3>
+        <p>
+          Developing artificial intelligence approaches to support
+          disease surveillance, prediction and public health
+          decision-making.
+        </p>
+      </div>
+
+      <div class="research-card">
+        <i class="fas fa-earth-africa"></i>
+        <h3>One Health & Schistosomiasis</h3>
+        <p>
+          Integrating human, animal and environmental factors to
+          understand and predict schistosomiasis epidemiology.
+        </p>
+      </div>
+
+      <div class="research-card">
+        <i class="fas fa-microscope"></i>
+        <h3>Medical Computer Vision</h3>
+        <p>
+          Microscopic image analysis, object detection and instance
+          segmentation for Schistosoma egg identification.
+        </p>
+      </div>
+
+      <div class="research-card">
+        <i class="fas fa-map-marked-alt"></i>
+        <h3>Ecological & Spatial Modeling</h3>
+        <p>
+          Species distribution modeling, MaxEnt and environmental
+          suitability mapping for intermediate-host snails.
+        </p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- PUBLICATIONS -->
+<section id="publications">
+  <div class="container">
+    <h2 class="section-title">Publications & Research Outputs</h2>
+
+    <div class="publication">
+      <h3>
+        AI-Based Multimodal Prediction of Schistosomiasis Prevalence
+        Using Environmental and Socio-Epidemiological Data in the
+        Lake Guiers Area, Senegal
+      </h3>
+      <p>
+        Conference research paper · INTELSYST 2026 · Paper ID: 45
+      </p>
+      <p>
+        Multimodal AI, environmental data, epidemiology and
+        schistosomiasis prevalence prediction.
+      </p>
+      <p><strong>Status:</strong> Conference submission / presentation</p>
+    </div>
+
+    <div class="publication">
+      <h3>
+        Semantic Amodal Instance Segmentation of Schistosoma
+        haematobium Eggs in Microscopic Images
+      </h3>
+      <p>
+        Ongoing research project
+      </p>
+      <p>
+        Investigating instance segmentation methods for microscopic
+        images, with particular attention to partially visible,
+        fragmented and border-truncated eggs.
+      </p>
+    </div>
+
+    <div class="publication">
+      <h3>
+        Projected Changes in Habitat Suitability for Human
+        Schistosomiasis Intermediate Host Snails under Future
+        Climate Scenarios in Lake Guiers, Senegal
+      </h3>
+      <p>
+        Ongoing research project
+      </p>
+      <p>
+        Ecological niche modeling and climate scenario analysis
+        using MaxEnt and environmental variables.
+      </p>
+    </div>
+
+    <p style="font-size:13px; margin-top:20px;">
+      <i class="fas fa-info-circle"></i>
+      More publications and research outputs will be added.
+    </p>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section class="gray-section" id="experience">
+  <div class="container">
+    <h2 class="section-title">Research & Professional Experience</h2>
+
+    <div class="timeline">
+
+      <div class="timeline-item">
+        <div class="date">2025 – Present</div>
+        <h3 class="item-title">PhD Researcher in Computer Science</h3>
+        <div class="institution">
+          Cheikh Anta Diop University (UCAD) · Senegal
         </div>
-        <div class="social-links">
-          <a href="https://orcid.org/0009-0000-7980-1414" target="_blank" rel="noreferrer">ORCID ↗</a>
-          <a href="https://www.linkedin.com/in/aliamini-mohamed-saiaf-48130294/" target="_blank" rel="noreferrer">LinkedIn ↗</a>
-          <a href="https://github.com/" target="_blank" rel="noreferrer">GitHub ↗</a>
+        <p class="item-description">
+          Research on Artificial Intelligence for Health,
+          schistosomiasis epidemiology, multimodal data integration
+          and One Health approaches.
+        </p>
+      </div>
+
+      <div class="timeline-item">
+        <div class="date">Research activities</div>
+        <h3 class="item-title">Research Activities – IRD</h3>
+        <div class="institution">
+          Institut de Recherche pour le Développement · Senegal
         </div>
+        <p class="item-description">
+          Participation in research activities related to health,
+          data analysis and scientific projects.
+        </p>
       </div>
-      <div class="hero-visual">
-        <div class="portrait-frame">
-          <div class="portrait-placeholder"><span>MSA</span><small>ADD YOUR PHOTO</small></div>
+
+      <div class="timeline-item">
+        <div class="date">2024</div>
+        <h3 class="item-title">Master's Research Project</h3>
+        <div class="institution">
+          UIDT · UTT · Senegal
         </div>
-        <div class="floating-card card-top"><span class="mini-icon">✳</span><div><strong>AI for Health</strong><small>Research focus</small></div></div>
-        <div class="floating-card card-bottom"><span class="mini-icon green">⌁</span><div><strong>One Health</strong><small>Human · Animal · Environment</small></div></div>
-        <div class="visual-orbit orbit-one"></div><div class="visual-orbit orbit-two"></div>
+        <p class="item-description">
+          Development of AI and deep learning approaches for
+          sleep apnea detection using ECG images.
+        </p>
       </div>
-    </section>
 
-    <section class="stats-strip">
-      <div><strong>AI</strong><span>Applied research</span></div>
-      <div><strong>One Health</strong><span>Interdisciplinary approach</span></div>
-      <div><strong>UCAD</strong><span>Dakar, Senegal</span></div>
-      <div><strong>NTDs</strong><span>Neglected tropical diseases</span></div>
-    </section>
+    </div>
+  </div>
+</section>
 
-    <section class="section content-section" id="about">
-      <div class="section-heading"><p class="eyebrow">01 / ABOUT</p><h2>Research driven by<br><em>real-world impact.</em></h2></div>
-      <div class="about-text">
-        <p class="large-copy">Hello! I am a PhD candidate in Computer Science at Cheikh Anta Diop University (UCAD), Senegal. My research explores how Artificial Intelligence and mathematical modeling can support the epidemiological understanding, prediction and surveillance of schistosomiasis.</p>
-        <p>Working within a One Health perspective, I am particularly interested in combining environmental, socio-epidemiological and biomedical data to develop predictive models and identify areas at risk. I also explore computer vision methods for the analysis of microscopic images.</p>
-        <p>Beyond research, I am committed to scientific collaboration, capacity building and the development of AI research in Africa.</p>
-        <div class="tag-list"><span>Machine Learning</span><span>Deep Learning</span><span>Computer Vision</span><span>Mathematical Modelling</span><span>Epidemiology</span><span>One Health</span></div>
+<!-- EDUCATION -->
+<section id="education">
+  <div class="container">
+    <h2 class="section-title">Education</h2>
+
+    <div class="timeline">
+
+      <div class="timeline-item">
+        <div class="date">2025 – Present</div>
+        <h3 class="item-title">PhD in Computer Science</h3>
+        <div class="institution">
+          Université Cheikh Anta Diop de Dakar (UCAD), Senegal
+        </div>
+        <p class="item-description">
+          Research area: Artificial Intelligence, mathematical
+          modeling and health, with a focus on schistosomiasis
+          and One Health.
+        </p>
       </div>
-    </section>
 
-    <section class="section tinted" id="research">
-      <div class="section-heading"><p class="eyebrow">02 / RESEARCH</p><h2>What I am<br><em>working on.</em></h2></div>
-      <div class="project-grid">
-        <article class="project-card featured"><div class="project-number">01</div><p class="project-type">MULTIMODAL AI · ONE HEALTH</p><h3>AI-based prediction of schistosomiasis prevalence</h3><p>Integrating environmental, socio-epidemiological and biomedical information to predict schistosomiasis prevalence and support risk mapping in the Lake Guiers area, Senegal.</p><div class="project-tags"><span>Multimodal learning</span><span>Late fusion</span><span>Explainable AI</span></div></article>
-        <article class="project-card"><div class="project-number">02</div><p class="project-type">COMPUTER VISION · MICROSCOPY</p><h3>Semantic amodal instance segmentation of Schistosoma eggs</h3><p>Investigating computer vision approaches to improve egg instance segmentation in challenging microscopic images, including truncated and border-touching objects.</p><div class="project-tags"><span>Instance segmentation</span><span>Microscopy</span><span>Medical AI</span></div></article>
-        <article class="project-card"><div class="project-number">03</div><p class="project-type">ECOLOGICAL MODELLING · CLIMATE</p><h3>Habitat suitability of intermediate-host snails</h3><p>Exploring maximum-entropy and deep-learning-enhanced approaches to study current and projected habitat suitability of schistosomiasis intermediate-host snails.</p><div class="project-tags"><span>MaxEnt</span><span>GIS</span><span>Climate scenarios</span></div></article>
+      <div class="timeline-item">
+        <div class="date">2024</div>
+        <h3 class="item-title">
+          Master's Degree in Computer Science – AI & Smart Technologies
+        </h3>
+        <div class="institution">
+          Université Iba Der Thiam de Thiès (UIDT) ·
+          Université de Technologie de Troyes (UTT)
+        </div>
+        <p class="item-description">
+          Master's thesis: AI and Deep Learning approaches
+          for sleep apnea detection using ECG images.
+          Thesis defended on November 4, 2024.
+        </p>
       </div>
-    </section>
 
-    <section class="section content-section" id="publications">
-      <div class="section-heading"><p class="eyebrow">03 / PUBLICATIONS & OUTPUTS</p><h2>Scientific work<br><em>& contributions.</em></h2></div>
-      <div class="publication-list">
-        <article class="publication"><div class="pub-year">2026</div><div><span class="pub-label">CONFERENCE PAPER · INTELSYST</span><h3>AI-Based Multimodal Prediction of Schistosomiasis Prevalence Using Environmental and Socio-Epidemiological Data in the Lake Guiers Area, Senegal</h3><p>Research on multimodal prediction and late fusion for schistosomiasis prevalence estimation.</p><span class="pub-status">Conference contribution · Paper ID 45</span></div></article>
-        <article class="publication"><div class="pub-year">2024</div><div><span class="pub-label">MASTER'S THESIS</span><h3>Artificial intelligence for sleep apnea detection from ECG images</h3><p>Computer vision approach using convolutional neural network architectures for the analysis of ECG-derived images.</p><span class="pub-status">Master's thesis · UIDT / UTT</span></div></article>
+    </div>
+  </div>
+</section>
+
+<!-- AWARDS -->
+<section class="gray-section" id="awards">
+  <div class="container">
+    <h2 class="section-title">Awards & Scientific Recognition</h2>
+
+    <div class="timeline">
+
+      <div class="timeline-item">
+        <div class="date">2026</div>
+        <h3 class="item-title">Best Paper Award Nomination</h3>
+        <div class="institution">INTELSYST 2026 · Fez, Morocco</div>
+        <p class="item-description">
+          Research paper on multimodal AI-based prediction
+          of schistosomiasis prevalence in the Lake Guiers area,
+          Senegal. Nominated for the Best Paper Award.
+        </p>
       </div>
-      <p class="note">This section is a starting point. Add DOI links, proceedings, abstracts and verified publication details as they become available.</p>
-    </section>
 
-    <section class="section tinted" id="experience">
-      <div class="section-heading"><p class="eyebrow">04 / EXPERIENCE</p><h2>Research &<br><em>professional journey.</em></h2></div>
-      <div class="timeline">
-        <article class="timeline-item"><div class="timeline-date">2026 — Present</div><div><h3>Research / Laboratory experience</h3><p class="institution">Institut de recherche pour le développement (IRD) · Senegal</p><p>Research activities related to AI, health and neglected tropical diseases. <span class="note-inline">Add your exact position, dates and responsibilities.</span></p></div></article>
-        <article class="timeline-item"><div class="timeline-date">Previous experience</div><div><h3>Research project contributor</h3><p class="institution">CIRAD · Senegal</p><p>Contribution to research activities in the health and territories research environment. <span class="note-inline">Complete with your official job title and dates.</span></p></div></article>
+      <div class="timeline-item">
+        <div class="date">2026</div>
+        <h3 class="item-title">Poster Presentation – IX-36</h3>
+        <div class="institution">Deep Learning Indaba · Lagos, Nigeria</div>
+        <p class="item-description">
+          Scientific poster presentation at the Deep Learning
+          Indaba 2026.
+        </p>
       </div>
-    </section>
 
-    <section class="section content-section" id="education">
-      <div class="section-heading"><p class="eyebrow">05 / EDUCATION</p><h2>Academic<br><em>background.</em></h2></div>
-      <div class="education-grid">
-        <article class="education-card"><span class="edu-year">2024 — Present</span><h3>PhD in Computer Science</h3><p>Cheikh Anta Diop University (UCAD), Dakar, Senegal</p><small>Research focus: Artificial Intelligence, mathematical modelling and schistosomiasis epidemiology.</small></article>
-        <article class="education-card"><span class="edu-year">2022 — 2024</span><h3>Master's in Computer Science – AI & Smart Technologies</h3><p>UIDT & University of Technology of Troyes (UTT)</p><small>Master's thesis on AI-based analysis of ECG images for sleep apnea detection.</small></article>
+      <div class="timeline-item">
+        <div class="date">2024</div>
+        <h3 class="item-title">Master's Thesis Defense</h3>
+        <div class="institution">UIDT · UTT</div>
+        <p class="item-description">
+          Successful defense of a research project on
+          AI-based sleep apnea detection using ECG images.
+        </p>
       </div>
-    </section>
 
-    <section class="section skills-section">
-      <div class="section-heading"><p class="eyebrow">06 / EXPERTISE</p><h2>Tools &<br><em>methods.</em></h2></div>
-      <div class="skills-grid">
-        <div><h3>Artificial Intelligence</h3><p>Machine Learning · Deep Learning · Multimodal Learning · Explainable AI</p></div>
-        <div><h3>Computer Vision</h3><p>Image Analysis · Object Detection · Instance Segmentation · Medical Imaging</p></div>
-        <div><h3>Research & Modelling</h3><p>Epidemiological Modelling · MaxEnt · Spatial Analysis · One Health</p></div>
-        <div><h3>Tools & Programming</h3><p>Python · TensorFlow · PyTorch · Scikit-learn · Google Earth Engine · QGIS</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="container">
+    <h2 class="section-title">Technical Skills</h2>
+
+    <div class="skills-grid">
+
+      <div class="skill-box">
+        <h3><i class="fas fa-brain"></i> AI & Machine Learning</h3>
+        <p>
+          Machine Learning, Deep Learning, Neural Networks,
+          TabNet, XGBoost, Transfer Learning, SHAP.
+        </p>
       </div>
-    </section>
 
-    <section class="contact-section" id="contact">
-      <div class="section contact-inner"><p class="eyebrow">07 / CONTACT</p><h2>Let's connect<br><em>and collaborate.</em></h2><p>I am open to research collaborations, scientific mobility opportunities, workshops and research internships in Artificial Intelligence for Health.</p><a class="button light" href="mailto:YOUR.EMAIL@EXAMPLE.COM">Get in touch ↗</a><div class="contact-links"><a href="https://orcid.org/0000-0000-0000-0000">ORCID</a><a href="https://www.linkedin.com/">LinkedIn</a><a href="https://github.com/">GitHub</a></div></div>
-    </section>
-  </main>
-  <footer><span>© <span id="year"></span> Mohamed-Saiaf ALIAMINI</span><span>Built with GitHub Pages · Dakar, Senegal</span></footer>
-  <script src="script.js"></script>
+      <div class="skill-box">
+        <h3><i class="fas fa-eye"></i> Computer Vision</h3>
+        <p>
+          Image Processing, Object Detection, Instance
+          Segmentation, YOLO, ResNet50, TensorFlow, Keras,
+          PyTorch.
+        </p>
+      </div>
+
+      <div class="skill-box">
+        <h3><i class="fas fa-chart-line"></i> Mathematical & Statistical Modeling</h3>
+        <p>
+          Epidemiological Modeling, Regression,
+          Statistical Analysis, MaxEnt, Species Distribution
+          Modeling.
+        </p>
+      </div>
+
+      <div class="skill-box">
+        <h3><i class="fas fa-globe"></i> Geospatial Technologies</h3>
+        <p>
+          Google Earth Engine, QGIS, Remote Sensing,
+          Environmental Data Analysis, NDVI, NDWI.
+        </p>
+      </div>
+
+      <div class="skill-box">
+        <h3><i class="fas fa-code"></i> Programming</h3>
+        <p>
+          Python, R, SQL, Jupyter Notebook, Google Colab,
+          Git and GitHub.
+        </p>
+      </div>
+
+      <div class="skill-box">
+        <h3><i class="fas fa-database"></i> Data Science</h3>
+        <p>
+          Data Preprocessing, Data Augmentation, Multimodal
+          Data Fusion, Visualization and Model Evaluation.
+        </p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="gray-section" id="contact">
+  <div class="container">
+    <h2 class="section-title">Contact</h2>
+
+    <div class="contact-box">
+      <h3>Let's Collaborate!</h3>
+      <p>
+        I am open to research collaborations, scientific
+        exchanges, research internships and opportunities
+        in Artificial Intelligence for Health.
+      </p>
+
+      <p style="margin-top:20px;">
+        <i class="fas fa-envelope"></i>
+        <a href="mailto:YOUR_EMAIL@example.com">
+          YOUR_EMAIL@example.com
+        </a>
+      </p>
+
+      <div class="social-links" style="justify-content:center;">
+        <a href="https://orcid.org/0009-0000-7980-1414">
+          ORCID
+        </a>
+        <a href="https://github.com/YOUR_USERNAME">
+          GitHub
+        </a>
+        <a href="https://www.linkedin.com/in/YOUR_USERNAME/">
+          LinkedIn
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    © 2026 Mohamed-Saiaf Aliamini. All rights reserved.
+    <br>
+    Artificial Intelligence · Health · One Health
+  </div>
+</footer>
+
+<script>
+  const menuToggle = document.getElementById("menuToggle");
+  const navLinks = document.getElementById("navLinks");
+
+  menuToggle.addEventListener("click", () => {
+    navLinks.classList.toggle("active");
+  });
+
+  document.querySelectorAll(".nav-links a").forEach(link => {
+    link.addEventListener("click", () => {
+      navLinks.classList.remove("active");
+    });
+  });
+</script>
+
 </body>
 </html>
